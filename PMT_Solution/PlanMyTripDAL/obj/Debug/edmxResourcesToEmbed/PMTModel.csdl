@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PlanMyTripDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Airport">
+    <Key>
+      <PropertyRef Name="AirportCode" />
+    </Key>
+    <Property Name="AirportCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="AirportName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FlightSchedules" Relationship="Self.FK__FlightSch__Desti__37A5467C" FromRole="Airport" ToRole="FlightSchedule" />
+    <NavigationProperty Name="FlightSchedules1" Relationship="Self.FK__FlightSch__Desti__38996AB5" FromRole="Airport" ToRole="FlightSchedule" />
+    <NavigationProperty Name="FlightSchedules2" Relationship="Self.FK__FlightSch__Origi__3B75D760" FromRole="Airport" ToRole="FlightSchedule" />
+    <NavigationProperty Name="FlightSchedules3" Relationship="Self.FK__FlightSch__Origi__3C69FB99" FromRole="Airport" ToRole="FlightSchedule" />
+  </EntityType>
+  <EntityType Name="BookingDetail">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Roomid" Type="Int32" />
+    <Property Name="BookedFor" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="BookedFrom" Type="DateTime" Precision="3" />
+    <Property Name="BookedTo" Type="DateTime" Precision="3" />
+    <Property Name="NoOfAdults" Type="Int32" />
+    <Property Name="NoOfChildren" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <NavigationProperty Name="RoomDetail" Relationship="Self.FK__BookingDe__Roomi__35BCFE0A" FromRole="BookingDetails" ToRole="RoomDetails" />
+    <NavigationProperty Name="RoomDetail1" Relationship="Self.FK__BookingDe__Roomi__36B12243" FromRole="BookingDetails" ToRole="RoomDetails" />
+  </EntityType>
+  <EntityType Name="Flight">
+    <Key>
+      <PropertyRef Name="FlightNumber" />
+    </Key>
+    <Property Name="FlightNumber" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="FlightName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SeatsCapacity" Type="Int32" Nullable="false" />
+    <Property Name="NoOfSeatsAvailable" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FlightSchedules" Relationship="Self.FK__FlightSch__Fligh__398D8EEE" FromRole="Flight" ToRole="FlightSchedule" />
+    <NavigationProperty Name="FlightSchedules1" Relationship="Self.FK__FlightSch__Fligh__3A81B327" FromRole="Flight" ToRole="FlightSchedule" />
+  </EntityType>
+  <EntityType Name="FlightSchedule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlightNumber" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="Origin" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="Destination" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="DepartureTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ArrivalTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Airport" Relationship="Self.FK__FlightSch__Desti__37A5467C" FromRole="FlightSchedule" ToRole="Airport" />
+    <NavigationProperty Name="Airport1" Relationship="Self.FK__FlightSch__Desti__38996AB5" FromRole="FlightSchedule" ToRole="Airport" />
+    <NavigationProperty Name="Airport2" Relationship="Self.FK__FlightSch__Origi__3B75D760" FromRole="FlightSchedule" ToRole="Airport" />
+    <NavigationProperty Name="Airport3" Relationship="Self.FK__FlightSch__Origi__3C69FB99" FromRole="FlightSchedule" ToRole="Airport" />
+    <NavigationProperty Name="Flight" Relationship="Self.FK__FlightSch__Fligh__398D8EEE" FromRole="FlightSchedule" ToRole="Flight" />
+    <NavigationProperty Name="Flight1" Relationship="Self.FK__FlightSch__Fligh__3A81B327" FromRole="FlightSchedule" ToRole="Flight" />
+    <NavigationProperty Name="Itenaries" Relationship="Self.FK__Itenary__Schedul__3F466844" FromRole="FlightSchedule" ToRole="Itenary" />
+    <NavigationProperty Name="Itenaries1" Relationship="Self.FK__Itenary__Schedul__403A8C7D" FromRole="FlightSchedule" ToRole="Itenary" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="HotelId" />
+    </Key>
+    <Property Name="HotelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="HotelName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AvgRoomRent" Type="Int32" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Rating" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RoomDetails" Relationship="Self.FK__RoomDetai__Hotel__4316F928" FromRole="Hotel" ToRole="RoomDetails" />
+    <NavigationProperty Name="RoomDetails1" Relationship="Self.FK__RoomDetai__Hotel__440B1D61" FromRole="Hotel" ToRole="RoomDetails" />
+  </EntityType>
+  <EntityType Name="Itenary">
+    <Key>
+      <PropertyRef Name="ReservationId" />
+    </Key>
+    <Property Name="ReservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PassengerId" Type="Int32" />
+    <Property Name="ScheduleId" Type="Int32" />
+    <NavigationProperty Name="FlightSchedule" Relationship="Self.FK__Itenary__Schedul__3F466844" FromRole="Itenary" ToRole="FlightSchedule" />
+    <NavigationProperty Name="FlightSchedule1" Relationship="Self.FK__Itenary__Schedul__403A8C7D" FromRole="Itenary" ToRole="FlightSchedule" />
+    <NavigationProperty Name="Passenger" Relationship="Self.FK__Itenary__Passeng__3D5E1FD2" FromRole="Itenary" ToRole="Passenger" />
+    <NavigationProperty Name="Passenger1" Relationship="Self.FK__Itenary__Passeng__3E52440B" FromRole="Itenary" ToRole="Passenger" />
+  </EntityType>
+  <EntityType Name="Passenger">
+    <Key>
+      <PropertyRef Name="PassengerId" />
+    </Key>
+    <Property Name="PassengerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Age" Type="Int32" />
+    <NavigationProperty Name="Itenaries" Relationship="Self.FK__Itenary__Passeng__3D5E1FD2" FromRole="Passenger" ToRole="Itenary" />
+    <NavigationProperty Name="Itenaries1" Relationship="Self.FK__Itenary__Passeng__3E52440B" FromRole="Passenger" ToRole="Itenary" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Roles__UserId__412EB0B6" FromRole="Roles" ToRole="Users" />
+    <NavigationProperty Name="User1" Relationship="Self.FK__Roles__UserId__4222D4EF" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="RoomDetail">
+    <Key>
+      <PropertyRef Name="RoomId" />
+    </Key>
+    <Property Name="HotelId" Type="Int32" />
+    <Property Name="RoomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoomName" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="RoomType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PerDayRate" Type="Int32" />
+    <Property Name="Availability" Type="Boolean" />
+    <NavigationProperty Name="BookingDetails" Relationship="Self.FK__BookingDe__Roomi__35BCFE0A" FromRole="RoomDetails" ToRole="BookingDetails" />
+    <NavigationProperty Name="BookingDetails1" Relationship="Self.FK__BookingDe__Roomi__36B12243" FromRole="RoomDetails" ToRole="BookingDetails" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK__RoomDetai__Hotel__4316F928" FromRole="RoomDetails" ToRole="Hotel" />
+    <NavigationProperty Name="Hotel1" Relationship="Self.FK__RoomDetai__Hotel__440B1D61" FromRole="RoomDetails" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmailId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Roles__UserId__412EB0B6" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Roles1" Relationship="Self.FK__Roles__UserId__4222D4EF" FromRole="Users" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK__FlightSch__Desti__37A5467C">
+    <End Role="Airport" Type="Self.Airport" Multiplicity="0..1" />
+    <End Role="FlightSchedule" Type="Self.FlightSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airport">
+        <PropertyRef Name="AirportCode" />
+      </Principal>
+      <Dependent Role="FlightSchedule">
+        <PropertyRef Name="Destination" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FlightSch__Desti__38996AB5">
+    <End Role="Airport" Type="Self.Airport" Multiplicity="0..1" />
+    <End Role="FlightSchedule" Type="Self.FlightSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airport">
+        <PropertyRef Name="AirportCode" />
+      </Principal>
+      <Dependent Role="FlightSchedule">
+        <PropertyRef Name="Destination" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FlightSch__Origi__3B75D760">
+    <End Role="Airport" Type="Self.Airport" Multiplicity="0..1" />
+    <End Role="FlightSchedule" Type="Self.FlightSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airport">
+        <PropertyRef Name="AirportCode" />
+      </Principal>
+      <Dependent Role="FlightSchedule">
+        <PropertyRef Name="Origin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FlightSch__Origi__3C69FB99">
+    <End Role="Airport" Type="Self.Airport" Multiplicity="0..1" />
+    <End Role="FlightSchedule" Type="Self.FlightSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airport">
+        <PropertyRef Name="AirportCode" />
+      </Principal>
+      <Dependent Role="FlightSchedule">
+        <PropertyRef Name="Origin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingDe__Roomi__35BCFE0A">
+    <End Role="RoomDetails" Type="Self.RoomDetail" Multiplicity="0..1" />
+    <End Role="BookingDetails" Type="Self.BookingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomDetails">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="BookingDetails">
+        <PropertyRef Name="Roomid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingDe__Roomi__36B12243">
+    <End Role="RoomDetails" Type="Self.RoomDetail" Multiplicity="0..1" />
+    <End Role="BookingDetails" Type="Self.BookingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomDetails">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="BookingDetails">
+        <PropertyRef Name="Roomid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FlightSch__Fligh__398D8EEE">
+    <End Role="Flight" Type="Self.Flight" Multiplicity="0..1" />
+    <End Role="FlightSchedule" Type="Self.FlightSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flight">
+        <PropertyRef Name="FlightNumber" />
+      </Principal>
+      <Dependent Role="FlightSchedule">
+        <PropertyRef Name="FlightNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FlightSch__Fligh__3A81B327">
+    <End Role="Flight" Type="Self.Flight" Multiplicity="0..1" />
+    <End Role="FlightSchedule" Type="Self.FlightSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flight">
+        <PropertyRef Name="FlightNumber" />
+      </Principal>
+      <Dependent Role="FlightSchedule">
+        <PropertyRef Name="FlightNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Itenary__Schedul__3F466844">
+    <End Role="FlightSchedule" Type="Self.FlightSchedule" Multiplicity="0..1" />
+    <End Role="Itenary" Type="Self.Itenary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlightSchedule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Itenary">
+        <PropertyRef Name="ScheduleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Itenary__Schedul__403A8C7D">
+    <End Role="FlightSchedule" Type="Self.FlightSchedule" Multiplicity="0..1" />
+    <End Role="Itenary" Type="Self.Itenary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlightSchedule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Itenary">
+        <PropertyRef Name="ScheduleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoomDetai__Hotel__4316F928">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="RoomDetails" Type="Self.RoomDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="HotelId" />
+      </Principal>
+      <Dependent Role="RoomDetails">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoomDetai__Hotel__440B1D61">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="RoomDetails" Type="Self.RoomDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="HotelId" />
+      </Principal>
+      <Dependent Role="RoomDetails">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Itenary__Passeng__3D5E1FD2">
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+    <End Role="Itenary" Type="Self.Itenary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Passenger">
+        <PropertyRef Name="PassengerId" />
+      </Principal>
+      <Dependent Role="Itenary">
+        <PropertyRef Name="PassengerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Itenary__Passeng__3E52440B">
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+    <End Role="Itenary" Type="Self.Itenary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Passenger">
+        <PropertyRef Name="PassengerId" />
+      </Principal>
+      <Dependent Role="Itenary">
+        <PropertyRef Name="PassengerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Roles__UserId__412EB0B6">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Roles__UserId__4222D4EF">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PlanMyTripDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Airports" EntityType="Self.Airport" />
+    <EntitySet Name="BookingDetails" EntityType="Self.BookingDetail" />
+    <EntitySet Name="Flights" EntityType="Self.Flight" />
+    <EntitySet Name="FlightSchedules" EntityType="Self.FlightSchedule" />
+    <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+    <EntitySet Name="Itenaries" EntityType="Self.Itenary" />
+    <EntitySet Name="Passengers" EntityType="Self.Passenger" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="RoomDetails" EntityType="Self.RoomDetail" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__FlightSch__Desti__37A5467C" Association="Self.FK__FlightSch__Desti__37A5467C">
+      <End Role="Airport" EntitySet="Airports" />
+      <End Role="FlightSchedule" EntitySet="FlightSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FlightSch__Desti__38996AB5" Association="Self.FK__FlightSch__Desti__38996AB5">
+      <End Role="Airport" EntitySet="Airports" />
+      <End Role="FlightSchedule" EntitySet="FlightSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FlightSch__Origi__3B75D760" Association="Self.FK__FlightSch__Origi__3B75D760">
+      <End Role="Airport" EntitySet="Airports" />
+      <End Role="FlightSchedule" EntitySet="FlightSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FlightSch__Origi__3C69FB99" Association="Self.FK__FlightSch__Origi__3C69FB99">
+      <End Role="Airport" EntitySet="Airports" />
+      <End Role="FlightSchedule" EntitySet="FlightSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingDe__Roomi__35BCFE0A" Association="Self.FK__BookingDe__Roomi__35BCFE0A">
+      <End Role="RoomDetails" EntitySet="RoomDetails" />
+      <End Role="BookingDetails" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingDe__Roomi__36B12243" Association="Self.FK__BookingDe__Roomi__36B12243">
+      <End Role="RoomDetails" EntitySet="RoomDetails" />
+      <End Role="BookingDetails" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FlightSch__Fligh__398D8EEE" Association="Self.FK__FlightSch__Fligh__398D8EEE">
+      <End Role="Flight" EntitySet="Flights" />
+      <End Role="FlightSchedule" EntitySet="FlightSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FlightSch__Fligh__3A81B327" Association="Self.FK__FlightSch__Fligh__3A81B327">
+      <End Role="Flight" EntitySet="Flights" />
+      <End Role="FlightSchedule" EntitySet="FlightSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Itenary__Schedul__3F466844" Association="Self.FK__Itenary__Schedul__3F466844">
+      <End Role="FlightSchedule" EntitySet="FlightSchedules" />
+      <End Role="Itenary" EntitySet="Itenaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Itenary__Schedul__403A8C7D" Association="Self.FK__Itenary__Schedul__403A8C7D">
+      <End Role="FlightSchedule" EntitySet="FlightSchedules" />
+      <End Role="Itenary" EntitySet="Itenaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoomDetai__Hotel__4316F928" Association="Self.FK__RoomDetai__Hotel__4316F928">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="RoomDetails" EntitySet="RoomDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoomDetai__Hotel__440B1D61" Association="Self.FK__RoomDetai__Hotel__440B1D61">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="RoomDetails" EntitySet="RoomDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Itenary__Passeng__3D5E1FD2" Association="Self.FK__Itenary__Passeng__3D5E1FD2">
+      <End Role="Passenger" EntitySet="Passengers" />
+      <End Role="Itenary" EntitySet="Itenaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Itenary__Passeng__3E52440B" Association="Self.FK__Itenary__Passeng__3E52440B">
+      <End Role="Passenger" EntitySet="Passengers" />
+      <End Role="Itenary" EntitySet="Itenaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Roles__UserId__412EB0B6" Association="Self.FK__Roles__UserId__412EB0B6">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Roles__UserId__4222D4EF" Association="Self.FK__Roles__UserId__4222D4EF">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <FunctionImport Name="usp_SearchFlights1" ReturnType="Collection(PlanMyTripDBModel.usp_SearchFlights1_Result)">
+      <Parameter Name="origin" Mode="In" Type="String" />
+      <Parameter Name="dest" Mode="In" Type="String" />
+      <Parameter Name="depttime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="uspSearchHotels" ReturnType="Collection(PlanMyTripDBModel.uspSearchHotels_Result)">
+      <Parameter Name="City" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="usp_SearchFlights1_Result">
+    <Property Type="String" Name="FlightNumber" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="FlightName" Nullable="false" MaxLength="30" />
+    <Property Type="DateTime" Name="DepartureTime" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ArrivalTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="NoOfSeatsAvailable" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="uspSearchHotels_Result">
+    <Property Type="String" Name="HotelName" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="RoomName" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="RoomType" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="PerDayRate" Nullable="true" />
+  </ComplexType>
+</Schema>

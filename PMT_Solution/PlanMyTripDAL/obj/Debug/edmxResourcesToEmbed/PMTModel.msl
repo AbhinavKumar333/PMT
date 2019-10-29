@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PlanMyTripDBModelStoreContainer" CdmEntityContainer="PlanMyTripDBEntities">
+    <EntitySetMapping Name="Airports">
+      <EntityTypeMapping TypeName="PlanMyTripDBModel.Airport">
+        <MappingFragment StoreEntitySet="Airport">
+          <ScalarProperty Name="AirportCode" ColumnName="AirportCode" />
+          <ScalarProperty Name="AirportName" ColumnName="AirportName" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingDetails">
+      <EntityTypeMapping TypeName="PlanMyTripDBModel.BookingDetail">
+        <MappingFragment StoreEntitySet="BookingDetails">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="Roomid" ColumnName="Roomid" />
+          <ScalarProperty Name="BookedFor" ColumnName="BookedFor" />
+          <ScalarProperty Name="BookedFrom" ColumnName="BookedFrom" />
+          <ScalarProperty Name="BookedTo" ColumnName="BookedTo" />
+          <ScalarProperty Name="NoOfAdults" ColumnName="NoOfAdults" />
+          <ScalarProperty Name="NoOfChildren" ColumnName="NoOfChildren" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flights">
+      <EntityTypeMapping TypeName="PlanMyTripDBModel.Flight">
+        <MappingFragment StoreEntitySet="Flight">
+          <ScalarProperty Name="FlightNumber" ColumnName="FlightNumber" />
+          <ScalarProperty Name="FlightName" ColumnName="FlightName" />
+          <ScalarProperty Name="SeatsCapacity" ColumnName="SeatsCapacity" />
+          <ScalarProperty Name="NoOfSeatsAvailable" ColumnName="NoOfSeatsAvailable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlightSchedules">
+      <EntityTypeMapping TypeName="PlanMyTripDBModel.FlightSchedule">
+        <MappingFragment StoreEntitySet="FlightSchedule">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FlightNumber" ColumnName="FlightNumber" />
+          <ScalarProperty Name="Origin" ColumnName="Origin" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+          <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hotels">
+      <EntityTypeMapping TypeName="PlanMyTripDBModel.Hotel">
+        <MappingFragment StoreEntitySet="Hotel">
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AvgRoomRent" ColumnName="AvgRoomRent" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Itenaries">
+      <EntityTypeMapping TypeName="PlanMyTripDBModel.Itenary">
+        <MappingFragment StoreEntitySet="Itenary">
+          <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+          <ScalarProperty Name="PassengerId" ColumnName="PassengerId" />
+          <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Passengers">
+      <EntityTypeMapping TypeName="PlanMyTripDBModel.Passenger">
+        <MappingFragment StoreEntitySet="Passenger">
+          <ScalarProperty Name="PassengerId" ColumnName="PassengerId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="PlanMyTripDBModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomDetails">
+      <EntityTypeMapping TypeName="PlanMyTripDBModel.RoomDetail">
+        <MappingFragment StoreEntitySet="RoomDetails">
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+          <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+          <ScalarProperty Name="PerDayRate" ColumnName="PerDayRate" />
+          <ScalarProperty Name="Availability" ColumnName="Availability" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PlanMyTripDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_SearchFlights1" FunctionName="PlanMyTripDBModel.Store.usp_SearchFlights1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PlanMyTripDBModel.usp_SearchFlights1_Result">
+          <ScalarProperty Name="FlightNumber" ColumnName="FlightNumber" />
+          <ScalarProperty Name="FlightName" ColumnName="FlightName" />
+          <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+          <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+          <ScalarProperty Name="NoOfSeatsAvailable" ColumnName="NoOfSeatsAvailable" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="uspSearchHotels" FunctionName="PlanMyTripDBModel.Store.uspSearchHotels">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PlanMyTripDBModel.uspSearchHotels_Result">
+          <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+          <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+          <ScalarProperty Name="PerDayRate" ColumnName="PerDayRate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

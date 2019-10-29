@@ -1,0 +1,16 @@
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT Cloud\PlanMyTripSolution\PlanMyTripDAL\obj\Release\PlanMyTripDAL.csprojAssemblyReference.cache
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT Cloud\PlanMyTripSolution\PlanMyTripDAL\obj\Release\PlanMyTripDAL.csproj.CoreCompileInputs.cache
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT Cloud\PlanMyTripSolution\PlanMyTripDAL\bin\Release\PlanMyTripDAL.dll.config
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT Cloud\PlanMyTripSolution\PlanMyTripDAL\bin\Release\PlanMyTripDAL.dll
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT Cloud\PlanMyTripSolution\PlanMyTripDAL\bin\Release\PlanMyTripDAL.pdb
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT Cloud\PlanMyTripSolution\PlanMyTripDAL\obj\Release\PlanMyTripDAL.csproj.CopyComplete
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT Cloud\PlanMyTripSolution\PlanMyTripDAL\obj\Release\PlanMyTripDAL.dll
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT Cloud\PlanMyTripSolution\PlanMyTripDAL\obj\Release\PlanMyTripDAL.pdb
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT OnPremise\SuppliedFiles\PlanMyTripSolution\PlanMyTripDAL\bin\Release\PlanMyTripDAL.dll.config
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT OnPremise\SuppliedFiles\PlanMyTripSolution\PlanMyTripDAL\bin\Release\PlanMyTripDAL.dll
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT OnPremise\SuppliedFiles\PlanMyTripSolution\PlanMyTripDAL\bin\Release\PlanMyTripDAL.pdb
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT OnPremise\SuppliedFiles\PlanMyTripSolution\PlanMyTripDAL\obj\Release\PlanMyTripDAL.csprojAssemblyReference.cache
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT OnPremise\SuppliedFiles\PlanMyTripSolution\PlanMyTripDAL\obj\Release\PlanMyTripDAL.csproj.CoreCompileInputs.cache
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT OnPremise\SuppliedFiles\PlanMyTripSolution\PlanMyTripDAL\obj\Release\PlanMyTripDAL.csproj.CopyComplete
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT OnPremise\SuppliedFiles\PlanMyTripSolution\PlanMyTripDAL\obj\Release\PlanMyTripDAL.dll
+C:\_SRIHOME\_Me\Content\GFT R May2018\PMT\PMT TTT OnPremise\SuppliedFiles\PlanMyTripSolution\PlanMyTripDAL\obj\Release\PlanMyTripDAL.pdb

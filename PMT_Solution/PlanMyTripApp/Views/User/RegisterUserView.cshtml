@@ -1,0 +1,94 @@
+﻿@model PlanMyTripApp.Models.Users
+
+@*@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RegisterUserView</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")*@
+    
+    
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+<div id="page" class="title">
+    <h2>Register User</h2>
+    <hr />
+
+    <div style="color:green">
+        @{
+            if (ViewBag.Message != null)
+            {
+                <p>@ViewBag.Message </p>
+            }
+        }
+    </div>
+    <div style="color:red">
+        @{
+            if (ViewBag.ErrMessage != null)
+            {
+                <p>@ViewBag.ErrMessage </p>
+            }
+        }
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <table class="">
+
+        <tr class="pmttr">
+            <td>  @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })</td>
+            <td class="separatortd"></td>
+            <td>
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr class="pmttr">
+            <td>  @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })</td>
+            <td class="separatortd"></td>
+            <td>
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr class="pmttr">
+            <td> @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-2" })</td>
+            <td class="separatortd"></td>
+            <td>
+                @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr class="pmttr">
+            <td>  @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })</td>
+            <td class="separatortd"></td>
+            <td>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Create" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
+    @*<div>
+        @Html.ActionLink("Login", "Login")
+    </div>*@
+    </div>
+    }
+
+    
+    @*</body>
+        </html>*@
