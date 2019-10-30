@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -137,7 +138,19 @@ namespace PlanMyTripApp.Controllers
         [HttpPost]
         public ActionResult GetSearchResult(FormCollection fc)
         {
-            return View();
+            List<PlanMyTripDAL.usp_SearchFlights1_Result> flightList = new List<PlanMyTripDAL.usp_SearchFlights1_Result>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:62921/");
+                var response = client.GetAsync("Search/GetFlights/" + fc[1].ToString()+ "/" + fc[2].ToString() + "/" + fc[3].ToString());
+                var res = response.Result;
+                if (res.IsSuccessStatusCode)
+                {
+                    var GetData = res.Content.ReadAsAsync<List<PlanMyTripDAL.usp_SearchFlights1_Result>>();
+                    flightList = GetData.Result;
+                }
+                return View("GetSearchRes", flightList);
+            }
         }
     }
 }

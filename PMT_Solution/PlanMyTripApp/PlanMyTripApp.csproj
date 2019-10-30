@@ -295,6 +295,7 @@
     <Content Include="Views\Hotel\GetSearchResult.cshtml" />
     <Content Include="Views\Hotel\GetSearchRes.cshtml" />
     <Content Include="Views\Flight\GetSearchResult.cshtml" />
+    <Content Include="Views\Flight\GetSearchRes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
