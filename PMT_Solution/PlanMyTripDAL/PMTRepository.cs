@@ -17,6 +17,7 @@ namespace PlanMyTripDAL
         {
             planMyTripDBContext = context;
         }
+        //-------------------------------User Operations
         public bool AddUser(User userEnt)
         {
             planMyTripDBContext.Users.Add(userEnt);
@@ -60,6 +61,112 @@ namespace PlanMyTripDAL
             return planMyTripDBContext.Users.Find(id);
         }
 
+        //--------------------------------------Hotel Operations
+
+        public bool AddHotel(Hotel hotel)
+        {
+            planMyTripDBContext.Hotels.Add(hotel);
+            int result = planMyTripDBContext.SaveChanges();
+            if (result > 0) { return true; }
+            else { return false; }
+
+        }
+        public List<Hotel> ViewHotels()
+        {
+            List<Hotel> hotelList = planMyTripDBContext.Hotels.ToList();
+            return hotelList;
+        }
+        public Hotel GetHotel(int hotelId)
+        {
+            var hotelSingle = planMyTripDBContext.Hotels.Find(hotelId);
+            return hotelSingle;
+        }
+        public bool UpdateHotel(Hotel hotel)
+        {
+            Hotel hotelup = planMyTripDBContext.Hotels.Find(hotel.HotelId);
+            hotelup.HotelId = hotel.HotelId;
+            hotelup.HotelName = hotel.HotelName;
+            hotelup.Phone = hotel.Phone;
+            hotelup.Rating = hotel.Rating;
+            hotelup.City = hotel.City;
+            hotelup.Address = hotel.Address;
+            hotelup.Description = hotel.Description;
+            hotelup.AvgRoomRent = hotel.AvgRoomRent;
+            hotelup.Email = hotel.Email;
+            int result = planMyTripDBContext.SaveChanges();
+            if (result > 0)
+            { return true; }
+            else { return false; }
+
+        }
+        public bool DeleteHotel(int hotelId)
+        {
+            Hotel hotelDel = planMyTripDBContext.Hotels.Find(hotelId);
+            planMyTripDBContext.Hotels.Remove(hotelDel);
+            int result = planMyTripDBContext.SaveChanges();
+            if (result > 0) { return true; }
+            else { return false; }
+
+        }
+
+        //----------------------------------Flight Operations
+
+        public bool AddFlight(Flight flight)
+        {
+            planMyTripDBContext.Flights.Add(flight);
+            int result = planMyTripDBContext.SaveChanges();
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public Flight GetFlight(string flightNo)
+        {
+            Flight tflight = planMyTripDBContext.Flights.Find(flightNo);
+            int result = planMyTripDBContext.SaveChanges();
+            return tflight;
+        }
+        public bool UpdateFlight(Flight flight)
+        {
+            Flight tflight = planMyTripDBContext.Flights.Find(flight.FlightNumber);
+            tflight.FlightNumber = flight.FlightNumber;
+            tflight.FlightName = flight.FlightName;
+            tflight.SeatsCapacity = flight.SeatsCapacity;
+            tflight.NoOfSeatsAvailable = flight.NoOfSeatsAvailable;
+
+            int result = planMyTripDBContext.SaveChanges();
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool DeleteFlight(string FlightNumber)
+        {
+            Flight tflight = planMyTripDBContext.Flights.Find(FlightNumber);
+            planMyTripDBContext.Flights.Remove(tflight);
+            int result = planMyTripDBContext.SaveChanges();
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public List<Flight> ViewFlights()
+        {
+            List<Flight> flightList = planMyTripDBContext.Flights.ToList();
+            return flightList;
+        }
 
 
     }

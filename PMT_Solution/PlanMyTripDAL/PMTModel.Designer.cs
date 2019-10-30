@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Training1\source\repos\PMT_Solution_Template\PMT_Solution\PlanMyTripDAL\PMTModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\user\source\repos\pmt\PMT_Solution\PlanMyTripDAL\PMTModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+@*<head>
 
     @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/modernizr")
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Plan My Trip</title>
     <meta name="keywords" content="">
@@ -12,10 +12,18 @@
     <link href="~/Content/default.css" rel="stylesheet" type="text/css" media="all">
     <link href="~/Content/fonts.css" rel="stylesheet" type="text/css" media="all">
     @Styles.Render("~/Content/jqueryui")
+</head>*@
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div id="wrapper">
-        <div id="header-wrapper">
+    
+        @*<div id="header-wrapper">
             <div id="header" class="container">
                 <div id="banner"> <a href="#" class="image"><img src="~/Content/images/Learning-and-Knowledge-Management.jpg" alt=""></a> </div>
                 <div id="logo">
@@ -28,7 +36,9 @@
                 </div>
 
             </div>
-        </div>
+        </div>*@
+
+        <!-----menu----->
         <div id="menu-wrapper">
             <div id="menu" class="container">
 
@@ -46,17 +56,14 @@
                 </ul>
 
             </div>
-            <!-- end #menu -->
         </div>
+        <!-- end #menu -->
 
 
         <div class="title">
-
             <h1>
-
                 Plan your trip with us to make it the best
             </h1>
-
             <div class="SignUpPara">
 
                 <p style="text-align:justify">
@@ -65,11 +72,9 @@
                     <a href="#">@Html.ActionLink("Login", "Login", "User")</a>
                 </p>
             </div>
-
-
-
-
         </div>
+
+
         <div id="sidebar">
             <div class="">
                 <ul class="style2">
@@ -81,18 +86,19 @@
             </div>
         </div>
     </div>
-    </div>
+    
     <div class="container">
         @RenderBody()
-
     </div>
+
     <hr />
     <footer>
         <div id="copyright" class="container">
             <p>© Untitled. All rights reserved. |  Design by <a href="http://portal.accenture.com" rel="nofollow">Accenture - Learning and Knowledge Management</a>.</p>
         </div>
     </footer>
-    <div id="footer-wrapper">
+
+    @*<div id="footer-wrapper">
             <div id="footer" class="container">
                 <div id="box1">
                     <div class="title">
@@ -135,16 +141,16 @@
                     <a href="#" class="icon icon-plus-sign button">Read More</a>
                 </div>
             </div>
-        </div>
+        </div>*@
 
 
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
 
-    @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
-    @Scripts.Render("~/bundles/jqueryui")
-    <script type="text/javascript">
+    @Scripts.Render("~/bundles/jqueryui")*@
+    @*<script type="text/javascript">
         $(document).ready(function () {
             $('.datetimepicker').datepicker({
                 dateFormat: "dd-mm-yy",
@@ -153,7 +159,7 @@
                 yearRange: "-60:+0"
             });
         });
-    </script>
+    </script>*@
 </body>
 </html>
 
