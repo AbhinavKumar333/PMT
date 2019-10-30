@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -134,12 +135,50 @@ namespace PlanMyTripApp.Controllers
             return View(h);
 
         }
-        [HttpPost, ActionName("DeleteHotelConfirm")]
-        public ActionResult DeleteHotelConfirm(int HotelId)
+        [HttpPost]
+        public ActionResult DeleteHotelConfirm(int hotelId)
         {
-            bool result = pmtRepo.DeleteHotel(HotelId);
+            bool result = pmtRepo.DeleteHotel(hotelId);
             return RedirectToAction("ViewHotels");
         }
-
+        [HttpGet]
+        public ActionResult GetSearchResult()
+        {
+            var dal = pmtRepo.ViewHotels();
+            Models.Flight mvc = new Models.Flight();
+            mvc.hotelList = new List<Models.Hotel>();
+            foreach(var d in dal)
+            {
+                Models.Hotel t = new Models.Hotel();
+                t.Address = d.Address;
+                t.Email = d.Email;
+                t.Description = d.Description;
+                t.HotelId = d.HotelId;
+                t.Rating = d.Rating;
+                t.HotelName = d.HotelName;
+                t.Phone = d.Phone;
+                t.AvgRoomRent = d.AvgRoomRent;
+                t.City = d.City;
+                mvc.hotelList.Add(t);
+            }
+            return View(mvc);
+        }
+        [HttpPost]
+        public ActionResult GetSearchResult(FormCollection fc)
+        {
+            List<PlanMyTripDAL.uspSearchHotels_Result> hotelList = new List<PlanMyTripDAL.uspSearchHotels_Result>();
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:62921/");
+                var response = client.GetAsync("Search/GetHotels/" + fc[1].ToString());
+                var res = response.Result;
+                if (res.IsSuccessStatusCode)
+                {
+                    var GetData = res.Content.ReadAsAsync<List<PlanMyTripDAL.uspSearchHotels_Result>>();
+                    hotelList = GetData.Result;
+                }
+                return View("GetSearchRes",hotelList);
+            }
+        }
     }
 }

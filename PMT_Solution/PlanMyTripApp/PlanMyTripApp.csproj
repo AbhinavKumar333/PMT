@@ -168,10 +168,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Airport.cs" />
     <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\HttpWebClient.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\uspSearchHotels_Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -271,22 +273,35 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\User\UnsubscribeView.cshtml" />
-    <Content Include="Views\User\LoginView.cshtml" />
-    <Content Include="Views\User\EditUserView.cshtml" />
     <Content Include="Views\User\RegisterUserView.cshtml" />
     <Content Include="Views\Shared\_PMTLayout.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Views\User\AddUser.cshtml" />
+    <Content Include="Views\User\LoginUser.cshtml" />
+    <Content Include="Views\User\ViewAllUsers.cshtml" />
+    <Content Include="Views\User\ViewUser.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\User\DeleteUser.cshtml" />
+    <Content Include="Views\Hotel\AddHotel.cshtml" />
+    <Content Include="Views\Hotel\ViewHotels.cshtml" />
+    <Content Include="Views\Hotel\ViewHotel.cshtml" />
+    <Content Include="Views\Hotel\EditHotel.cshtml" />
+    <Content Include="Views\Hotel\DeleteHotel.cshtml" />
+    <Content Include="Views\Flight\AddFlight.cshtml" />
+    <Content Include="Views\Flight\ViewFlights.cshtml" />
+    <Content Include="Views\Flight\ViewFlight.cshtml" />
+    <Content Include="Views\Flight\DeleteFlight.cshtml" />
+    <Content Include="Views\Flight\UpdateFlight.cshtml" />
+    <Content Include="Views\Hotel\GetSearchResult.cshtml" />
+    <Content Include="Views\Hotel\GetSearchRes.cshtml" />
+    <Content Include="Views\Flight\GetSearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
     <Folder Include="Controllers\MVCControllers\" />
     <Folder Include="Views\FlightSchedule\" />
-    <Folder Include="Views\Flight\" />
     <Folder Include="Views\HotelBooking\" />
-    <Folder Include="Views\Hotel\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>

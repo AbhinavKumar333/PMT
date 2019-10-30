@@ -25,6 +25,14 @@ namespace PlanMyTripDAL
             if (result > 0) { return true; }
             else { return false; }
         }
+        public bool DeleteUser(int usrId)
+        {
+            User tuser = planMyTripDBContext.Users.Find(usrId);
+            planMyTripDBContext.Users.Remove(tuser);
+            int result = planMyTripDBContext.SaveChanges();
+            if (result > 0) { return true; }
+            else { return false; }
+        }
         public bool UpdateUser(User user)
         {
             User tuser = planMyTripDBContext.Users.Find(user.UserId);
@@ -33,14 +41,6 @@ namespace PlanMyTripDAL
             tuser.LastName = user.LastName;
             tuser.Password = user.Password;
             tuser.EmailId = user.EmailId;
-            int result = planMyTripDBContext.SaveChanges();
-            if (result > 0) { return true; }
-            else { return false; }
-        }
-        public bool DeleteUser(int usrId)
-        {
-            User tuser = planMyTripDBContext.Users.Find(usrId);
-            planMyTripDBContext.Users.Remove(tuser);
             int result = planMyTripDBContext.SaveChanges();
             if (result > 0) { return true; }
             else { return false; }
@@ -167,7 +167,19 @@ namespace PlanMyTripDAL
             List<Flight> flightList = planMyTripDBContext.Flights.ToList();
             return flightList;
         }
-
-
+        public List<uspSearchHotels_Result> SearchHotels(string city)
+        {
+            List<uspSearchHotels_Result> hotelList = planMyTripDBContext.uspSearchHotels(city).ToList();
+            return hotelList;
+        }
+        public List<Airport> GetAirports()
+        {
+            return planMyTripDBContext.Airports.ToList();
+        }
+        public List<usp_SearchFlights1_Result> SearchFlight(string origin,string destination,DateTime date)
+        {
+            List<usp_SearchFlights1_Result> flightList = planMyTripDBContext.usp_SearchFlights1(origin, destination, date).ToList();
+            return flightList;
+        }
     }
 }

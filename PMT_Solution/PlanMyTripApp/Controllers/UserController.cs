@@ -114,12 +114,12 @@ namespace PlanMyTripApp.Controllers
         {
             return View();
         }
-        public ActionResult LoginConfirmed(FormCollection fc)
+        public ActionResult LoginConfirmed(Models.User user)
         {
-            int result = pmtRepo.ValidateUser(fc["EmailId"], fc["Password"]);
+            int result = pmtRepo.ValidateUser(user.EmailId, user.Password);
             if (result>0)
             {
-                Session["Email"] = fc["EmailId"];
+                Session["Email"] = user.EmailId;
                 return RedirectToAction("ViewAllUsers");
             }
             else

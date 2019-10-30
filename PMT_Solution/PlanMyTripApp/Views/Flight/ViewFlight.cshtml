@@ -1,0 +1,54 @@
+﻿@model PlanMyTripApp.Models.Flight
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewFlight</title>
+</head>
+<body>
+    <div>
+        <h4>Flight</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FlightNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FlightNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FlightName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FlightName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SeatsCapacity)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SeatsCapacity)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NoOfSeatsAvailable)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NoOfSeatsAvailable)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "UpdateFlight", new {  flightNo = Model.FlightNumber }) |
+        @Html.ActionLink("Back to List", "ViewFlights")
+    </p>
+</body>
+</html>

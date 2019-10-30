@@ -111,11 +111,33 @@ namespace PlanMyTripApp.Controllers
             tflight.NoOfSeatsAvailable = sflight.NoOfSeatsAvailable;
             return View(tflight);
         }
-        [HttpPost, ActionName("DeleteFlight")]
-        public ActionResult DeleteFlightConfirm(string flightNo)
+        [HttpPost]
+        public ActionResult DeleteFlightConfirm(string FlightNumber)
         {
-            bool result = pmtRepo.DeleteFlight(flightNo);
+            bool result = pmtRepo.DeleteFlight(FlightNumber);
             return RedirectToAction("ViewFlights");
+        }
+        [HttpGet]
+        public ActionResult GetSearchResult()
+        {
+            var dal = pmtRepo.GetAirports();
+            Models.Hotel mvc = new Models.Hotel();
+            mvc.airports = new List<Models.Airport>();
+            foreach(var d in dal)
+            {
+                Models.Airport t = new Models.Airport();
+                t.AirportCode = d.AirportCode;
+                t.AirportName = d.AirportName;
+                t.Description = d.Description;
+                t.Location = d.Location;
+                mvc.airports.Add(t);
+            }
+            return View(mvc);
+        }
+        [HttpPost]
+        public ActionResult GetSearchResult(FormCollection fc)
+        {
+            return View();
         }
     }
 }

@@ -58,3 +58,10 @@ C:\Users\user\source\repos\pmt\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDA
 C:\Users\user\source\repos\pmt\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.csproj.CopyComplete
 C:\Users\user\source\repos\pmt\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.dll
 C:\Users\user\source\repos\pmt\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.pdb
+C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\bin\Debug\PlanMyTripDAL.dll.config
+C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\bin\Debug\PlanMyTripDAL.dll
+C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\bin\Debug\PlanMyTripDAL.pdb
+C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.csproj.CoreCompileInputs.cache
+C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.csproj.CopyComplete
+C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.dll
+C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.pdb

@@ -1,12 +1,26 @@
 ﻿
+@model PlanMyTripApp.Models.User
 
 
-    <div id="content">
-    <div class="title">
-    <div id="GettingStarted"> <a href="#" class="image"><img src="~/Content/images/Flight1.jpg" width="1200" alt=""></a> </div>
+<center>
+    <h1 style="align-content:center">Welcome to PlanMyTrip Portal</h1>
+    <p style="color:mediumpurple ; font-size:20px; font-family:Calibri">
+        <output>Developed By Abhinav,Alok,Pradyuman,Shirsa,Tamajit</output>
+    </p>
+</center>
+
+<div id="sidebar">
+        <div class="">
+            <ul class="style2">
+                <li> @Html.ActionLink("Search Flights", "SearchFlights", "Search")</li>
+
+                <li>@Html.ActionLink("Search Hotels", "GetSearchResult", "Hotel")</li>
+
+            </ul>
+        </div>
     </div>
-    </div>
-        
+
+
 
 
 
