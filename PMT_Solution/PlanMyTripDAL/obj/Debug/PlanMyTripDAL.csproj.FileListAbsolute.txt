@@ -65,3 +65,4 @@ C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripD
 C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.csproj.CopyComplete
 C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.dll
 C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.pdb
+C:\Users\Training1\source\repos\PMT_Solution\PlanMyTripDAL\obj\Debug\PlanMyTripDAL.csprojAssemblyReference.cache

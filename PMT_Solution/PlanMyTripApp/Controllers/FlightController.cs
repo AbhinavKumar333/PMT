@@ -32,14 +32,17 @@ namespace PlanMyTripApp.Controllers
             tflight.FlightName = flight.FlightName;
             tflight.SeatsCapacity = flight.SeatsCapacity;
             tflight.NoOfSeatsAvailable = flight.NoOfSeatsAvailable;
-            bool result = pmtRepo.AddFlight(tflight);
-            if (result)
+            if (ModelState.IsValid)
             {
-                ViewBag.Msg = "Flight Registered";
-            }
-            else
-            {
-                ViewBag.ErrMsg = "Registration Failed !!!";
+                bool result = pmtRepo.AddFlight(tflight);
+                if (result)
+                {
+                    ViewBag.Msg = "Flight Registered";
+                }
+                else
+                {
+                    ViewBag.ErrMsg = "Registration Failed !!!";
+                }
             }
             return View("AddFlight", flight);
 
@@ -139,10 +142,12 @@ namespace PlanMyTripApp.Controllers
         public ActionResult GetSearchResult(FormCollection fc)
         {
             List<PlanMyTripDAL.usp_SearchFlights1_Result> flightList = new List<PlanMyTripDAL.usp_SearchFlights1_Result>();
+            string t = fc[1].ToString();
+            string[] airname = t.Split(',');
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:62921/");
-                var response = client.GetAsync("Search/GetFlights/" + fc[1].ToString()+ "/" + fc[2].ToString() + "/" + fc[3].ToString());
+                var response = client.GetAsync("Search/GetFlights/" + airname[0]+ "/" + airname[1] + "/" + fc[2].ToString());
                 var res = response.Result;
                 if (res.IsSuccessStatusCode)
                 {

@@ -38,10 +38,12 @@ namespace PlanMyTripApp.Controllers
             hoteladd.City = modhotel.City;
             hoteladd.AvgRoomRent = modhotel.AvgRoomRent;
             hoteladd.Address = modhotel.Address;
-
-            bool result = pmtRepo.AddHotel(hoteladd);
-            if (result) { ViewBag.msg = "Registered Successfully"; }
-            else { ViewBag.errormsg = "Registration Failed"; }
+            if (ModelState.IsValid)
+            {
+                bool result = pmtRepo.AddHotel(hoteladd);
+                if (result) { ViewBag.msg = "Registered Successfully"; }
+                else { ViewBag.errormsg = "Registration Failed"; }
+            }
             return View("AddHotel", modhotel);
 
         }

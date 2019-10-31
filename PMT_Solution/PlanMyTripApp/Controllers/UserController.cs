@@ -32,9 +32,11 @@ namespace PlanMyTripApp.Controllers
             temp.EmailId = u.EmailId;
             temp.LastName = u.LastName;
             temp.Password = u.Password;
+            if (ModelState.IsValid) { 
             bool result = pmtRepo.AddUser(temp);
             if (result) { ViewBag.Msg = "User Added Successfully!"; }
             else { ViewBag.ErrorMsg = "Error occured while adding user"; }
+            }
             return View("AddUser");
         }
         [HttpGet]
@@ -117,7 +119,7 @@ namespace PlanMyTripApp.Controllers
         public ActionResult LoginConfirmed(Models.User user)
         {
             int result = pmtRepo.ValidateUser(user.EmailId, user.Password);
-            if (result>0)
+            if (result>0 && ModelState.IsValid)
             {
                 Session["Email"] = user.EmailId;
                 return RedirectToAction("ViewAllUsers");

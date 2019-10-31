@@ -7,15 +7,15 @@ using System.Web;
 namespace PlanMyTripApp.Models
 {
     public class User
-    {   [Required]
+    {   [Required(ErrorMessage ="Enter UserId")]
         public int UserId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Enter FirstName")]
         public string FirstName { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Enter LastName")]
         public string LastName { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Enter Email")]
         public string EmailId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Enter password")]
         public string Password { get; set; }
     }
 }

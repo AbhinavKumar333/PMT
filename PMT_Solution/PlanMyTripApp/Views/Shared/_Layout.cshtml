@@ -48,8 +48,8 @@
                     <li>
                         @Html.ActionLink("Home Page", "Index", "Home")
                     </li>
-                    <li>@Html.ActionLink("Flights", "ViewFlights", "Flight")</li>
-                    <li>@Html.ActionLink("Hotels", "ViewHotels", "Hotel")</li>
+                    @*<li>@Html.ActionLink("Flights", "ViewFlights", "Flight")</li>
+                    <li>@Html.ActionLink("Hotels", "ViewHotels", "Hotel")</li>*@
 
 
                     <li><a href="#">About Us</a></li>
@@ -156,7 +156,7 @@
     <script type="text/javascript">
             $(document).ready(function () {
                 $('.datetimepicker').datepicker({
-                    dateFormat: "dd-mm-yy",
+                    dateFormat: "yy-mm-dd",
                     changeMonth: true,
                     changeYear: true,
                     yearRange: "-60:+0"
