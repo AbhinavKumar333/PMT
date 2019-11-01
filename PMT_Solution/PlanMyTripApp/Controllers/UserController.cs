@@ -32,10 +32,11 @@ namespace PlanMyTripApp.Controllers
             temp.EmailId = u.EmailId;
             temp.LastName = u.LastName;
             temp.Password = u.Password;
-            if (ModelState.IsValid) { 
-            bool result = pmtRepo.AddUser(temp);
-            if (result) { ViewBag.Msg = "User Added Successfully!"; }
-            else { ViewBag.ErrorMsg = "Error occured while adding user"; }
+            if (ModelState.IsValid)
+            { 
+                bool result = pmtRepo.AddUser(temp);
+                if (result) { ViewBag.Msg = "User Added Successfully!"; }
+                else { ViewBag.ErrorMsg = "Error occured while adding user"; }
             }
             return View("AddUser");
         }
@@ -57,9 +58,10 @@ namespace PlanMyTripApp.Controllers
             return View(mvc);
         }
         [HttpGet]
-        public ActionResult ViewUser(int id)
+        public ActionResult ViewUser()
         {
-            PlanMyTripDAL.User dal = pmtRepo.View(id);
+            string email = Session["Email"].ToString();
+            var dal = pmtRepo.ViewUserByEmail(email);
             Models.User mvc = new Models.User();
             mvc.UserId = dal.UserId;
             mvc.FirstName = dal.FirstName;
@@ -110,7 +112,8 @@ namespace PlanMyTripApp.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             pmtRepo.DeleteUser(id);
-            return RedirectToAction("ViewAllUsers");
+            Session.Clear();
+            return RedirectToAction("Index","Home");
         }
         public ActionResult LoginUser()
         {
@@ -118,11 +121,18 @@ namespace PlanMyTripApp.Controllers
         }
         public ActionResult LoginConfirmed(Models.User user)
         {
+            //ViewBag.abc = fc[2].ToString();
+            //return View("LoginUser");
+            if (user.EmailId == null || user.Password == null)
+            {
+                ViewBag.ErrorMsg = "Empty Fields!";
+                return View("LoginUser");
+            }
             int result = pmtRepo.ValidateUser(user.EmailId, user.Password);
-            if (result>0 && ModelState.IsValid)
+            if ((result > 0))
             {
                 Session["Email"] = user.EmailId;
-                return RedirectToAction("ViewAllUsers");
+                return RedirectToAction("Index","Home");
             }
             else
             {

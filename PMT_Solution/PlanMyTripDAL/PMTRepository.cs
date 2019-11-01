@@ -60,6 +60,11 @@ namespace PlanMyTripDAL
         {
             return planMyTripDBContext.Users.Find(id);
         }
+        public User ViewUserByEmail(string email)
+        {
+            var u = (from c in planMyTripDBContext.Users where c.EmailId == email select c).ToList();
+            return u.FirstOrDefault();
+        }
 
         //--------------------------------------Hotel Operations
 

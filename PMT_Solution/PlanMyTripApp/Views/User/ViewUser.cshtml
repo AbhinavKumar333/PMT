@@ -49,7 +49,7 @@
     </div>
     <p>
         @Html.ActionLink("Edit", "EditUser", new { id = Model.UserId }) |
-        @Html.ActionLink("Back to List", "ViewAllUsers","User")
+        @Html.ActionLink("Unsubscribe", "DeleteUser", new { id = Model.UserId })
     </p>
 </body>
 </html>
