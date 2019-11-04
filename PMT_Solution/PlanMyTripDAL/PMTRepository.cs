@@ -65,6 +65,12 @@ namespace PlanMyTripDAL
             var u = (from c in planMyTripDBContext.Users where c.EmailId == email select c).ToList();
             return u.FirstOrDefault();
         }
+        public bool CheckSameEmail(string email)
+        {
+            var u = (from c in planMyTripDBContext.Users where c.EmailId == email select c);
+            if (u.Count()>0) { return false; }
+            else { return true; }
+        }
 
         //--------------------------------------Hotel Operations
 
@@ -112,6 +118,11 @@ namespace PlanMyTripDAL
             if (result > 0) { return true; }
             else { return false; }
 
+        }
+        public List<Hotel> ViewHotelLocation()
+        {
+            var res = (from c in planMyTripDBContext.Hotels join d in planMyTripDBContext.RoomDetails on c.HotelId equals d.HotelId select c).ToList();
+            return res;
         }
 
         //----------------------------------Flight Operations
@@ -172,6 +183,14 @@ namespace PlanMyTripDAL
             List<Flight> flightList = planMyTripDBContext.Flights.ToList();
             return flightList;
         }
+
+        public bool CheckSameFlight(string flno)
+        {
+            var f = (from c in planMyTripDBContext.Flights where c.FlightNumber == flno select c);
+            if (f.Count() > 0) { return false; }
+            else { return true; }
+        }
+        //--------------------------------------------------Search Operations
         public List<uspSearchHotels_Result> SearchHotels(string city)
         {
             List<uspSearchHotels_Result> hotelList = planMyTripDBContext.uspSearchHotels(city).ToList();

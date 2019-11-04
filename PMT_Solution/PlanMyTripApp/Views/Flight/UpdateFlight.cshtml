@@ -23,7 +23,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.FlightNumber, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.FlightNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.FlightNumber, new { htmlAttributes = new { @class = "form-control", @required = "Required" ,@readonly="readonly"} })
                     @Html.ValidationMessageFor(model => model.FlightNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.FlightName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.FlightName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.FlightName, new { htmlAttributes = new { @class = "form-control" ,@required="Required"} })
                     @Html.ValidationMessageFor(model => model.FlightName, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.SeatsCapacity, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.SeatsCapacity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.SeatsCapacity, new { htmlAttributes = new { @class = "form-control", @required = "Required" } })
                     @Html.ValidationMessageFor(model => model.SeatsCapacity, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.NoOfSeatsAvailable, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.NoOfSeatsAvailable, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.NoOfSeatsAvailable, new { htmlAttributes = new { @class = "form-control", @required = "Required" } })
                     @Html.ValidationMessageFor(model => model.NoOfSeatsAvailable, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -65,5 +65,6 @@
     </div>
     <div>@ViewBag.Msg</div>
     <div>@ViewBag.ErrMsg</div>
+    <div>@ViewBag.ErrorMsg</div>
 </body>
 </html>

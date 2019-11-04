@@ -21,7 +21,7 @@ namespace PlanMyTripApp.Models
         public Nullable<int> AvgRoomRent { get; set; }
         [Required, MaxLength(10)]
         public string Phone { get; set; }
-        [Required]
+        [Required][Range(0,7)]
         public Nullable<int> Rating { get; set; }
         [Required, EmailAddress]
         public string Email { get; set; }

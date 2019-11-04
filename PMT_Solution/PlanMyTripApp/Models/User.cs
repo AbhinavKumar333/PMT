@@ -13,9 +13,9 @@ namespace PlanMyTripApp.Models
         public string FirstName { get; set; }
         [Required(ErrorMessage ="Enter LastName")]
         public string LastName { get; set; }
-        [Required(ErrorMessage ="Enter Email")]
+        [Required(ErrorMessage ="Enter Email")][EmailAddress]
         public string EmailId { get; set; }
-        [Required(ErrorMessage ="Enter password")]
+        [Required(ErrorMessage ="Enter password")][DataType(DataType.Password)][MaxLength(12)]
         public string Password { get; set; }
     }
 }

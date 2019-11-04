@@ -63,6 +63,7 @@ namespace PlanMyTripApp.Controllers
                 h.City = item.City;
                 h.Description = item.Description;
                 h.Phone = item.Phone;
+                h.Address = item.Address;
                 h.AvgRoomRent = item.AvgRoomRent;
                 hotelmodels.Add(h);
             }
@@ -79,6 +80,7 @@ namespace PlanMyTripApp.Controllers
             h.Rating = hotelview.Rating;
             h.Email = hotelview.Email;
             h.City = hotelview.City;
+            h.Address = hotelview.Address;
             h.Description = hotelview.Description;
             h.Phone = hotelview.Phone;
             h.AvgRoomRent = hotelview.AvgRoomRent;
@@ -94,6 +96,7 @@ namespace PlanMyTripApp.Controllers
             h.HotelName = hoteledit.HotelName;
             h.Phone = hoteledit.Phone;
             h.Rating = hoteledit.Rating;
+            h.Address = hoteledit.Address;
             h.Email = hoteledit.Email;
             h.City = hoteledit.City;
             h.Description = hoteledit.Description;
@@ -111,14 +114,18 @@ namespace PlanMyTripApp.Controllers
             h.Rating = modHotel.Rating;
             h.Email = modHotel.Email;
             h.City = modHotel.City;
+            h.Address = modHotel.Address;
             h.Description = modHotel.Description;
             h.Phone = modHotel.Phone;
             h.AvgRoomRent = modHotel.AvgRoomRent;
-            bool result = pmtRepo.UpdateHotel(h);
-            if (result) { ViewBag.msg = "Updated"; }
-            else { ViewBag.errormsg = "Updation Failed"; }
-            return View("EditHotel", modHotel);
-
+            if (ModelState.IsValid)
+            {
+                bool result = pmtRepo.UpdateHotel(h);
+                if (result) { ViewBag.msg = "Updated"; }
+                else { ViewBag.errormsg = "Updation Failed"; }
+            }
+                return View("EditHotel", modHotel);
+            
         }
         [HttpGet]
         public ActionResult DeleteHotel(int hotelId)
@@ -146,7 +153,7 @@ namespace PlanMyTripApp.Controllers
         [HttpGet]
         public ActionResult GetSearchResult()
         {
-            var dal = pmtRepo.ViewHotels();
+            var dal = pmtRepo.ViewHotelLocation();
             Models.Flight mvc = new Models.Flight();
             mvc.hotelList = new List<Models.Hotel>();
             foreach(var d in dal)
@@ -169,17 +176,24 @@ namespace PlanMyTripApp.Controllers
         public ActionResult GetSearchResult(FormCollection fc)
         {
             List<PlanMyTripDAL.uspSearchHotels_Result> hotelList = new List<PlanMyTripDAL.uspSearchHotels_Result>();
-            using(var client = new HttpClient())
+            if (ModelState.IsValid)
             {
-                client.BaseAddress = new Uri("http://localhost:62921/");
-                var response = client.GetAsync("Search/GetHotels/" + fc[1].ToString());
-                var res = response.Result;
-                if (res.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    var GetData = res.Content.ReadAsAsync<List<PlanMyTripDAL.uspSearchHotels_Result>>();
-                    hotelList = GetData.Result;
+                    client.BaseAddress = new Uri("http://localhost:62921/");
+                    var response = client.GetAsync("Search/GetHotels/" + fc[1].ToString());
+                    var res = response.Result;
+                    if (res.IsSuccessStatusCode)
+                    {
+                        var GetData = res.Content.ReadAsAsync<List<PlanMyTripDAL.uspSearchHotels_Result>>();
+                        hotelList = GetData.Result;
+                    }
+                    return View("GetSearchRes", hotelList);
                 }
-                return View("GetSearchRes",hotelList);
+            }
+            else
+            {
+                return View();
             }
         }
     }

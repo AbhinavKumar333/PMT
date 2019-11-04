@@ -67,8 +67,10 @@
 
                 <p style="text-align:justify">
                     <a href="#">@Html.ActionLink("Profile", "ViewUser", "User")</a>|
-
-                    <a href="#">@Html.ActionLink("Logout", "LogoutUser", "User")</a>
+                    <a> @Html.ActionLink("Search Flights", "GetSearchResult", "Flight")</a>|
+                    <a>@Html.ActionLink("Search Hotels", "GetSearchResult", "Hotel")</a><hr/>
+                    <a>Currently Logged in as <b>@Session["Email"]</b></a>|
+                    <a>@Html.ActionLink("Logout", "LogoutUser", "User")</a>
                 </p>
             </div>
         </div>

@@ -9,7 +9,7 @@ namespace PlanMyTripApp.Controllers
 {
     public class FlightController : Controller
     {
-        private PlanMyTripDAL.PMTRepository pmtRepo = null;
+        private PlanMyTripDAL.PMTRepository pmtRepo;
         // GET: Flight
         public FlightController()
         {
@@ -28,21 +28,34 @@ namespace PlanMyTripApp.Controllers
         public ActionResult AddFlight(Models.Flight flight)
         {
             PlanMyTripDAL.Flight tflight = new PlanMyTripDAL.Flight();
+            if (flight.NoOfSeatsAvailable > flight.SeatsCapacity)
+            {
+                ViewBag.ErrorMsg = "No of seats available exceeds the flight capacity";
+                return View();
+            }
             tflight.FlightNumber = flight.FlightNumber;
             tflight.FlightName = flight.FlightName;
             tflight.SeatsCapacity = flight.SeatsCapacity;
             tflight.NoOfSeatsAvailable = flight.NoOfSeatsAvailable;
             if (ModelState.IsValid)
             {
-                bool result = pmtRepo.AddFlight(tflight);
-                if (result)
+                if (pmtRepo.CheckSameFlight(flight.FlightNumber))
                 {
-                    ViewBag.Msg = "Flight Registered";
+                    bool result = pmtRepo.AddFlight(tflight);
+                    if (result)
+                    {
+                        ViewBag.Msg = "Flight Registered";
+                    }
+                    else
+                    {
+                        ViewBag.ErrMsg = "Registration Failed !!!";
+                    }
                 }
                 else
                 {
-                    ViewBag.ErrMsg = "Registration Failed !!!";
+                    TempData["flerr"] = "Flight Number already exists!";
                 }
+                
             }
             return View("AddFlight", flight);
 
@@ -62,6 +75,11 @@ namespace PlanMyTripApp.Controllers
         public ActionResult UpdateFlight(Models.Flight flight)
         {
             PlanMyTripDAL.Flight tflight = new PlanMyTripDAL.Flight();
+            if (flight.NoOfSeatsAvailable > flight.SeatsCapacity)
+            {
+                ViewBag.ErrorMsg = "No of seats available exceeds the flight capacity";
+                return View();
+            }
             tflight.FlightNumber = flight.FlightNumber;
             tflight.FlightName = flight.FlightName;
             tflight.SeatsCapacity = flight.SeatsCapacity;
@@ -75,7 +93,7 @@ namespace PlanMyTripApp.Controllers
             {
                 ViewBag.ErrMsg = "Flight Update Failed!!";
             }
-            return View("UpdateFlight", flight);
+            return View("UpdateFlight",flight);
         }
 
         public ActionResult ViewFlight(string flightNo)
@@ -127,7 +145,7 @@ namespace PlanMyTripApp.Controllers
             var dal = pmtRepo.GetAirports();
             Models.Hotel mvc = new Models.Hotel();
             mvc.airports = new List<Models.Airport>();
-            foreach(var d in dal)
+            foreach (var d in dal)
             {
                 Models.Airport t = new Models.Airport();
                 t.AirportCode = d.AirportCode;
@@ -142,19 +160,40 @@ namespace PlanMyTripApp.Controllers
         public ActionResult GetSearchResult(FormCollection fc)
         {
             List<PlanMyTripDAL.usp_SearchFlights1_Result> flightList = new List<PlanMyTripDAL.usp_SearchFlights1_Result>();
-            string t = fc[1].ToString();
-            string[] airname = t.Split(',');
-            using (var client = new HttpClient())
+            if (ModelState.IsValid)
             {
-                client.BaseAddress = new Uri("http://localhost:62921/");
-                var response = client.GetAsync("Search/GetFlights/" + airname[0]+ "/" + airname[1] + "/" + fc[2].ToString());
-                var res = response.Result;
-                if (res.IsSuccessStatusCode)
+                string t = fc[1].ToString();
+                string[] airname = t.Split(',');
+                if (airname[0] != airname[1])
                 {
-                    var GetData = res.Content.ReadAsAsync<List<PlanMyTripDAL.usp_SearchFlights1_Result>>();
-                    flightList = GetData.Result;
+                    using (var client = new HttpClient())
+                    {
+                        client.BaseAddress = new Uri("http://localhost:62921/");
+                        var response = client.GetAsync("Search/GetFlights/" + airname[0] + "/" + airname[1] + "/" + fc[2].ToString());
+                        var res = response.Result;
+                        if (res.IsSuccessStatusCode)
+                        {
+                            var GetData = res.Content.ReadAsAsync<List<PlanMyTripDAL.usp_SearchFlights1_Result>>();
+                            flightList = GetData.Result;
+                        }
+                        if (flightList.Count > 0)
+                            return View("GetSearchRes", flightList);
+                        else
+                        {
+                            TempData["notfound"] = "NO flights Found for the given data!";
+                            return RedirectToAction("GetSearchResult");
+                        }
+                    }
                 }
-                return View("GetSearchRes", flightList);
+                else
+                {
+                    TempData["error"] = "Origin and Destination are same";
+                    return RedirectToAction("GetSearchResult");
+                }
+            }
+            else
+            {
+                return View("GetSearchResult", flightList);
             }
         }
     }

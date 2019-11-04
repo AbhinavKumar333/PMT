@@ -13,7 +13,7 @@ namespace PlanMyTripApp.Controllers
         {
             pmtRepo = new PlanMyTripDAL.PMTRepository();
         }
-        // GET: User
+
         public ActionResult Index()
         {
             return View();
@@ -33,10 +33,17 @@ namespace PlanMyTripApp.Controllers
             temp.LastName = u.LastName;
             temp.Password = u.Password;
             if (ModelState.IsValid)
-            { 
-                bool result = pmtRepo.AddUser(temp);
-                if (result) { ViewBag.Msg = "User Added Successfully!"; }
-                else { ViewBag.ErrorMsg = "Error occured while adding user"; }
+            {
+                if (pmtRepo.CheckSameEmail(u.EmailId))
+                {
+                    bool result = pmtRepo.AddUser(temp);
+                    if (result) { ViewBag.Msg = "User Added Successfully!"; }
+                    else { ViewBag.ErrorMsg = "Error occured while adding user"; }
+                }
+                else
+                {
+                    TempData["urserr"] = "Email already exists!";
+                }
             }
             return View("AddUser");
         }
@@ -85,13 +92,16 @@ namespace PlanMyTripApp.Controllers
         [HttpPost]
         public ActionResult EditConfirm(Models.User mvc)
         {
+            bool result = false;
             PlanMyTripDAL.User dal = pmtRepo.View(mvc.UserId);
-            dal.UserId = mvc.UserId;
-            dal.FirstName = mvc.FirstName;
-            dal.LastName = mvc.LastName;
-            dal.EmailId = mvc.EmailId;
-            dal.Password = mvc.Password;
-            bool result = pmtRepo.UpdateUser(dal);
+            if (ModelState.IsValid)
+            {
+                dal.UserId = mvc.UserId;
+                dal.FirstName = mvc.FirstName;
+                dal.LastName = mvc.LastName;
+                dal.Password = mvc.Password;
+                result = pmtRepo.UpdateUser(dal);
+            }
             if (result) { ViewBag.Msg = "Updated Successfully!"; }
             else { ViewBag.ErrorMsg = "Update Failed"; }
             return View("EditUser");
@@ -119,19 +129,18 @@ namespace PlanMyTripApp.Controllers
         {
             return View();
         }
-        public ActionResult LoginConfirmed(Models.User user)
+        public ActionResult LoginConfirmed(FormCollection fc)
         {
-            //ViewBag.abc = fc[2].ToString();
-            //return View("LoginUser");
-            if (user.EmailId == null || user.Password == null)
+            if (fc[1].ToString() == "" || fc[2].ToString() == "")
             {
                 ViewBag.ErrorMsg = "Empty Fields!";
                 return View("LoginUser");
             }
-            int result = pmtRepo.ValidateUser(user.EmailId, user.Password);
+
+            int result = pmtRepo.ValidateUser(fc[1].ToString(), fc[2].ToString());
             if ((result > 0))
             {
-                Session["Email"] = user.EmailId;
+                Session["Email"] = fc[1].ToString();
                 return RedirectToAction("Index","Home");
             }
             else

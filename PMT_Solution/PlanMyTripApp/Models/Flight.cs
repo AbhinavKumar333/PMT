@@ -7,9 +7,10 @@ using System.Web;
 namespace PlanMyTripApp.Models
 {
     public class Flight
-    {   [Required (ErrorMessage = "Enter the Details")]
+    {
+        [Required(ErrorMessage = "Enter the Details")]
         public string FlightNumber { get; set; }
-        [Required(ErrorMessage = "Enter the Name")]
+        [Required]
         public string FlightName { get; set; }
         [Required(ErrorMessage = "Enter the Total Numbers of Seats")]
         public int SeatsCapacity { get; set; }
